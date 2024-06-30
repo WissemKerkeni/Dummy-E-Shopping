@@ -1,0 +1,28 @@
+@if (error$ | async; as error) {
+  <div class="error">
+    Error: {{ error }}
+  </div>
+}
+
+@defer (when loading$ | async) {
+  <div
+    infiniteScroll
+    [infiniteScrollDistance]="2"
+    [infiniteScrollThrottle]="50"
+    (scrolled)="onScroll()"
+  >
+    <mat-grid-list cols="4" rowHeight="22.875rem" gutterSize="16">
+      @for (product of products$ | async; track product.id) {
+        <mat-grid-tile class="mat-grid-tile">
+          <product-card [product]="product" (navigateTo)="navigateTo($event)" (purchase)="purchaseProduct($event)"></product-card>
+        </mat-grid-tile>
+      } @empty {
+        <div>No Products are here... yet.</div>
+      }
+    </mat-grid-list>
+  </div>
+} @loading {
+  <div class="loading">
+    Loading products...
+  </div>
+}

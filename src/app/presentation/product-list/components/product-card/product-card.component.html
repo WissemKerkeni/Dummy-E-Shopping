@@ -1,0 +1,40 @@
+<mat-card class="example-card" appearance="outlined">
+  <div class="mat-card-image" (click)="navigateTo.emit(product()?.id)">
+    <img mat-card-image [src]="product()?.thumbnail" alt="Photo of a product">
+    <mat-chip-set class="mat-chip-set" aria-label="Tags">
+      @if (product()?.isNew) {
+        <custom-chip backgroundColor="#ebeb00" color="#FFFFFF">New</custom-chip>
+      }
+      @if (product()?.isFlashSale) {
+        <custom-chip backgroundColor="#21b721" color="#FFFFFF">Flash sale</custom-chip>
+      }
+      @if (product()?.hasDiscount) {
+        <custom-chip backgroundColor="#db4444" color="#FFFFFF">-{{ product()?.discountPercentage }}%</custom-chip>
+      }
+    </mat-chip-set>
+    <div class="add-chart" (click)="purchase.emit(product()?.id); $event.stopPropagation();">
+      <mat-icon class="mat-icon">shopping_cart</mat-icon>
+      <div>Add To Cart</div>
+    </div>
+  </div>
+  <mat-card-header>
+    <mat-card-subtitle class="mat-card-subtitle">
+      <custom-chip color="#52057B">{{ product()?.category }}</custom-chip>
+    </mat-card-subtitle>
+    <mat-card-title class="mat-card-title">{{ product()?.title }}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="mat-card-content">
+    @if(product()?.discountPercentage) {
+      <div class="old-price">
+        ${{ product()?.oldPrice?.toFixed(2) }}
+      </div>
+    }
+    <div class="price">
+      ${{ product()?.price?.toFixed(2) }}
+    </div>
+    <div class="rating">
+      <img src="./assets/icons/rate-icon.svg" alt="rating icon" height="20" width="20"/>
+      <div>{{ product()?.rating }}</div>
+    </div>
+  </mat-card-content>
+</mat-card>

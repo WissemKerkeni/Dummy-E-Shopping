@@ -1,0 +1,93 @@
+:host {
+  display: block;
+  height: 100%;
+  width: 100%;
+
+  .mat-card-image {
+    position: relative;
+    height: 11.875rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #F5F5F5;
+    cursor: pointer;
+
+    img {
+      height: 9rem;
+    }
+
+    .mat-chip-set {
+      position: absolute;
+      left: 0.75rem;
+      top: 0.5rem;
+    }
+
+    .add-chart {
+      position: absolute;
+      bottom: 0;
+      height: 0;
+      width: 100%;
+      overflow: hidden;
+      background: #000000;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: height 0.4s;
+
+      .mat-icon {
+        font-family: 'Material Icons Outlined';
+        font-size: 1.25rem;
+      }
+    }
+
+    &:hover .add-chart {
+      height: 2.25rem;
+    }
+  }
+
+  .mat-card-title {
+    font-size: 1rem;
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+    line-height: 1.5rem;
+    cursor: pointer;
+    margin-top: 0.5rem;
+
+    &:hover {
+      font-weight: 600;
+    }
+  }
+
+  .mat-card-content {
+    display: flex;
+    align-items: center;
+    margin-top: 0.875rem;
+
+    .old-price {
+      text-decoration: line-through;
+      color: #828282;
+      font-size: 1.125rem;
+      font-weight: 500;
+      margin-right: 0.375rem;
+    }
+
+    .price {
+      font-size: 1.125rem;
+      font-weight: 600;
+    }
+
+    .rating {
+      display: flex;
+      align-items: center;
+      font-size: 1rem;
+      font-weight: 500;
+      margin-left: auto;
+
+      & > *:first-child {
+        margin-right: 0.375rem;
+      }
+    }
+  }
+}
