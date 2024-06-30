@@ -11,7 +11,7 @@
     [infiniteScrollThrottle]="50"
     (scrolled)="onScroll()"
   >
-    <mat-grid-list cols="4" rowHeight="22.875rem" gutterSize="16">
+    <mat-grid-list cols="5" rowHeight="22.875rem" gutterSize="16">
       @for (product of products$ | async; track product.id) {
         <mat-grid-tile class="mat-grid-tile">
           <product-card [product]="product" (navigateTo)="navigateTo($event)" (purchase)="purchaseProduct($event)"></product-card>

@@ -1,3 +1,5 @@
+import {ReviewDTO} from "./review.dto";
+
 export interface ProductDTO {
   id: number;
   title: string;
@@ -11,4 +13,5 @@ export interface ProductDTO {
   thumbnail: string;
   images: string[];
   createdAt: string;
+  reviews: ReviewDTO[];
 }

@@ -1,0 +1,10 @@
+@for (s of stars; track s) {
+  <mat-icon class="rated">star_rate</mat-icon>
+}
+@if (halfStar) {
+  <mat-icon>star_rate_half</mat-icon>
+}
+@for (e of emptyStars; track e) {
+  <mat-icon>star_rate</mat-icon>
+}
+

@@ -1,3 +1,5 @@
+import {Review} from "./review.entity";
+
 export class Product {
 
   constructor(
@@ -17,5 +19,6 @@ export class Product {
     public hasDiscount: boolean,
     public isNew: boolean,
     public isFlashSale: boolean,
+    public reviews: Review[],
   ) {}
 }

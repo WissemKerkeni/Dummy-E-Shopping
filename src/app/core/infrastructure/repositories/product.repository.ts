@@ -5,6 +5,8 @@ import {map} from 'rxjs/operators';
 import {ProductDTO} from '../../application/dtos/product.dto';
 import {Product} from '../../domain/entities';
 import {environment} from '../../../../environments/environment';
+import {Review} from "../../domain/entities/review.entity";
+import {ReviewDTO} from "../../application/dtos";
 
 @Injectable({
   providedIn: 'root'
@@ -18,12 +20,14 @@ export class ProductRepository {
     const pagination = `skip=${skip}&limit=${limit}`
     const search = searchText ? `/search?q=${searchText}&` : '?';
     return this.httpClient.get<{ products: ProductDTO[] }>(`${environment.apiUrl}/products${search}${pagination}`).pipe(
-      map(({products}) => products.map(this.mapProductDTOToProduct))
+      map(({products}) => products.map(product => this.mapProductDTOToProduct(product)))
     );
   }
 
   private mapProductDTOToProduct(productDTO: ProductDTO): Product {
     const createdAt = new Date(productDTO.createdAt);
+    const isNewProduct = (new Date().getTime() - createdAt.getTime()) / (1000 * 3600 * 24) <= 3;
+
     return new Product(
       productDTO.id,
       productDTO.title,
@@ -40,7 +44,18 @@ export class ProductRepository {
       createdAt,
       productDTO.price < 50,
       productDTO.price < 10,
-      (new Date().getTime() - createdAt.getTime()) / (1000 * 3600 * 24) <= 3
+      isNewProduct,
+      productDTO.reviews.length ? productDTO.reviews.map(this.mapReviewDTOToReview) : [],
+    );
+  }
+
+  private mapReviewDTOToReview(reviewDTO: ReviewDTO): Review {
+    return new Review(
+      reviewDTO.rating,
+      reviewDTO.comment,
+      new Date(reviewDTO.date),
+      reviewDTO.reviewerName,
+      reviewDTO.reviewerEmail,
     );
   }
 }

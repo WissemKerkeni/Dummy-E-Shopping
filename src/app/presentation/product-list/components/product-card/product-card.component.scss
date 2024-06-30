@@ -62,20 +62,26 @@
 
   .mat-card-content {
     display: flex;
-    align-items: center;
+    flex-direction: column;
     margin-top: 0.875rem;
 
-    .old-price {
-      text-decoration: line-through;
-      color: #828282;
-      font-size: 1.125rem;
-      font-weight: 500;
-      margin-right: 0.375rem;
-    }
+    .price-container {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.5rem;
 
-    .price {
-      font-size: 1.125rem;
-      font-weight: 600;
+      .price {
+        font-size: 1.125rem;
+        font-weight: 600;
+        margin-right: 0.375rem;
+      }
+
+      .old-price {
+        text-decoration: line-through;
+        color: #828282;
+        font-size: 1.125rem;
+        font-weight: 500;
+      }
     }
 
     .rating {
@@ -83,10 +89,14 @@
       align-items: center;
       font-size: 1rem;
       font-weight: 500;
-      margin-left: auto;
 
-      & > *:first-child {
-        margin-right: 0.375rem;
+      .stars {
+        padding-top: 0.5rem;
+      }
+
+      .reviews {
+        color: #828282;
+        margin-left: 0.5rem;
       }
     }
   }
