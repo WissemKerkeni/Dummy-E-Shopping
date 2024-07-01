@@ -5,17 +5,18 @@ import {routes} from './app.routes';
 import {provideAnimationsAsync} from '@angular/platform-browser/animations/async';
 import {provideStore} from '@ngrx/store';
 import {provideEffects} from '@ngrx/effects';
-import {ngrxProductFeature} from './core/store/reducers';
-import {ProductEffects} from './core/store/effects';
+import {ngrxCartFeature, ngrxProductFeature} from './core/store/reducers';
+import {CartEffects, ProductEffects} from './core/store/effects';
 import {provideHttpClient} from "@angular/common/http";
 
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes),
     provideAnimationsAsync(),
     provideStore({
-      ngrxProduct: ngrxProductFeature.reducer
+      ngrxProduct: ngrxProductFeature.reducer,
+      ngrxCart: ngrxCartFeature.reducer
     }),
-    provideEffects([ProductEffects]),
+    provideEffects([ProductEffects, CartEffects]),
     provideHttpClient(),
   ]
 };

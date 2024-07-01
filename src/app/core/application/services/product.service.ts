@@ -1,11 +1,9 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
-import {Product} from '../../domain/entities/product.entity';
-import {GetProductsUseCase} from "../../domain/use-cases/get-products-use-case.service";
+import {Product} from '../../domain/entities';
+import {GetProductsUseCase} from "../../domain/use-cases";
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({providedIn: 'root'})
 export class ProductService {
   constructor(private getProductsUseCase: GetProductsUseCase) {
   }

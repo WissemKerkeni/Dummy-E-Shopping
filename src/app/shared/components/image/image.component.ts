@@ -11,6 +11,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 export class ImageComponent {
   url = input<string>('');
   padding = input<string>('0.875rem');
+  background = input<string>('#F5F5F5');
   loading = true;
 
 }

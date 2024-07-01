@@ -3,6 +3,8 @@ import {Router, RouterLink, RouterOutlet} from '@angular/router';
 import {FormControl, ReactiveFormsModule} from "@angular/forms";
 import {debounceTime, distinctUntilChanged} from "rxjs";
 import {MatIconModule} from "@angular/material/icon";
+import {Store} from "@ngrx/store";
+import {loadCart} from "./core/store/actions";
 
 @Component({
   selector: 'app-root',
@@ -12,6 +14,7 @@ import {MatIconModule} from "@angular/material/icon";
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
+  private readonly store = inject(Store);
   private readonly router = inject(Router);
   searchControl = new FormControl('');
 
@@ -23,5 +26,7 @@ export class AppComponent {
       )
       .subscribe((searchText) =>
         this.router.navigate(['/products'], {queryParams: {search: searchText}}));
+
+    this.store.dispatch(loadCart());
   }
 }

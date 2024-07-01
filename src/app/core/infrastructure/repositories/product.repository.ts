@@ -2,15 +2,12 @@ import {inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
-import {ProductDTO} from '../../application/dtos/product.dto';
 import {Product} from '../../domain/entities';
 import {environment} from '../../../../environments/environment';
 import {Review} from "../../domain/entities/review.entity";
-import {ReviewDTO} from "../../application/dtos";
+import {ReviewDTO, ProductDTO} from "../../application/dtos";
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({providedIn: 'root'})
 export class ProductRepository {
   private readonly httpClient = inject(HttpClient);
 

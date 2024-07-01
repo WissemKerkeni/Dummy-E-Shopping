@@ -1,4 +1,6 @@
-<div class="image-container" [style.padding]="padding()">
+<div class="image-container"
+     [style.padding]="padding()"
+     [style.background]="background()">
   @if (loading) {
     <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
   }

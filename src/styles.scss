@@ -1,8 +1,37 @@
 
-html, body { height: 100%; }
-body { margin: 0; font-family: 'Inter', sans-serif; }
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+}
 
 .separator {
   height: 1px;
   background-color: #d1d1d1;
+}
+
+.skeleton {
+  border-radius: 0.5rem;
+  height: 1.25rem;
+  width: 8rem;
+  animation-name: move-animation;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  background: linear-gradient(to right, #eee 8%, #ddd 18%, #eee 33%);
+  background-size: 800px;
+  margin: 0 auto;
+
+  @keyframes move-animation {
+    0% {
+      background-position: -468px 0;
+    }
+    100% {
+      background-position: 468px 0;
+    }
+  }
 }

@@ -1,6 +1,6 @@
 import {createFeature, createReducer, on} from '@ngrx/store';
-import {Product} from '../../domain/entities/product.entity';
-import {loadProducts, loadProductsSuccess, loadProductsFailure} from '../actions/product.actions';
+import {Product} from '../../domain/entities';
+import {loadProducts, loadProductsSuccess, loadProductsFailure} from '../actions';
 
 export interface ProductState {
   products: Product[];

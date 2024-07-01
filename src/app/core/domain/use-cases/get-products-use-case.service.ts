@@ -1,11 +1,9 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
-import {ProductRepository} from '../../infrastructure/repositories/product.repository';
+import {ProductRepository} from '../../infrastructure/repositories';
 import {Product} from '../entities';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({  providedIn: 'root'})
 export class GetProductsUseCase {
   constructor(private productRepository: ProductRepository) {
   }
