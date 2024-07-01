@@ -14,7 +14,7 @@
     <mat-grid-list cols="5" rowHeight="22.875rem" gutterSize="16">
       @for (product of products$ | async; track product.id) {
         <mat-grid-tile class="mat-grid-tile">
-          <product-card [product]="product" (navigateTo)="navigateTo($event)" (purchase)="purchaseProduct($event)"></product-card>
+          <product-card [product]="product" (navigateTo)="navigateTo($event || 0)" (purchase)="addToCart($event)"></product-card>
         </mat-grid-tile>
       } @empty {
         <div>No Products are here... yet.</div>

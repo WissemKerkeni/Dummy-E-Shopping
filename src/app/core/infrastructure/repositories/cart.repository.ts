@@ -16,6 +16,21 @@ export class CartRepository {
     );
   }
 
+  removeFromCart(productId: number, quantity: number): Observable<void> {
+    return this.httpClient.put<void>(`${environment.apiUrl}/carts/1`, {
+      merge: false,
+      products: [{id: productId, quantity}]
+    });
+
+  }
+
+  addToCart(productId: number): Observable<void> {
+    return this.httpClient.put<void>(`${environment.apiUrl}/carts/1`, {
+      merge: true,
+      products: [{id: productId, quantity: 1}]
+    });
+  }
+
   private mapCartDTOToCart(cartDTO: CartDTO): Cart {
     return new Cart(
       cartDTO.id,

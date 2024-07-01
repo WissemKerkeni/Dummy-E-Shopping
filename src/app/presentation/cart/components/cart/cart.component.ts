@@ -10,11 +10,12 @@ import {MatInput} from "@angular/material/input";
 import {FormsModule} from "@angular/forms";
 import {ImageComponent} from "../../../../shared/components";
 import {MatButtonModule} from "@angular/material/button";
+import {RouterModule} from "@angular/router";
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [MatTableModule, MatIcon, MatInput, MatButtonModule, AsyncPipe, FormsModule, ImageComponent],
+  imports: [MatTableModule, MatIcon, MatInput, MatButtonModule, AsyncPipe, FormsModule, ImageComponent, RouterModule],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss'
 })

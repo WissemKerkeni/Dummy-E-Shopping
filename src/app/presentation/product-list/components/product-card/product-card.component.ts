@@ -15,6 +15,10 @@ import {Product} from '../../../../core/domain/entities';
 export class ProductCardComponent {
   product = input<Product>();
   navigateTo = output<number | undefined>();
-  purchase = output<number | undefined>();
+  purchase = output<Product>();
+
+  emitPurchase(product: Product | undefined) {
+    this.purchase.emit(product || {} as Product);
+  }
 
 }

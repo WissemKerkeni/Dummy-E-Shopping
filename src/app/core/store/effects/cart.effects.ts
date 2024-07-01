@@ -1,7 +1,15 @@
 import {inject, Injectable} from "@angular/core";
 import {Actions, createEffect, ofType} from "@ngrx/effects";
 import {CartService} from "../../application/services";
-import {loadCart, loadCartFailure, loadCartSuccess} from "../actions";
+import {
+  addToCart,
+  addToCartSuccess,
+  loadCart,
+  loadCartFailure,
+  loadCartSuccess,
+  removeFromCart,
+  removeFromCartSuccess
+} from "../actions";
 import {catchError, map, switchMap} from "rxjs/operators";
 import {of} from "rxjs";
 
@@ -19,6 +27,26 @@ export class CartEffects {
           map(cart => loadCartSuccess({cart})),
           catchError(error => of(loadCartFailure({error})))
         )
+      )
+    )
+  );
+
+  addToCart$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(addToCart),
+      switchMap(({product}) =>
+        this.cartService.addToCart(product.id).pipe(
+          map(() => addToCartSuccess({product})))
+      )
+    )
+  );
+
+  removeFromCart$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(removeFromCart),
+      switchMap(({productId, quantity}) =>
+        this.cartService.removeFromCart(productId, quantity).pipe(
+          map(() => removeFromCartSuccess({productId, quantity})))
       )
     )
   );

@@ -1,6 +1,11 @@
 .navigation {
   display: flex;
   flex-direction: column;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 99;
+  background: white;
 
   .top-nav {
     height: 2.5rem;
@@ -96,4 +101,8 @@
       }
     }
   }
+}
+
+.content {
+  margin-top: 6.875rem;
 }

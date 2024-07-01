@@ -2,6 +2,18 @@
   display: block;
   padding: 2.5rem;
 
+  .loading-container {
+    height: 37.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    mat-progress-spinner {
+      height: 40% !important;
+      width: 40% !important;
+    }
+  }
+
   .product-details-container {
     display: flex;
     height: 37.5rem;

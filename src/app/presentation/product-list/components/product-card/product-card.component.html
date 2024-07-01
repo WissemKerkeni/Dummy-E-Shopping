@@ -12,7 +12,7 @@
         <custom-chip backgroundColor="#db4444" color="#FFFFFF">-{{ product()?.discountPercentage }}%</custom-chip>
       }
     </mat-chip-set>
-    <div class="add-chart" (click)="purchase.emit(product()?.id); $event.stopPropagation();">
+    <div class="add-chart" (click)="emitPurchase(product()); $event.stopPropagation();">
       <mat-icon class="mat-icon">shopping_cart</mat-icon>
       <div>Add To Cart</div>
     </div>

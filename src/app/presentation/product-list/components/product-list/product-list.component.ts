@@ -6,8 +6,9 @@ import {Store} from '@ngrx/store';
 import {InfiniteScrollDirective} from 'ngx-infinite-scroll';
 import {Subscription} from 'rxjs';
 import {selectError, selectLoading, selectProducts} from '../../../../core/store/selectors';
-import {loadNextPageProducts, loadProducts} from '../../../../core/store/actions';
+import {addToCart, loadNextPageProducts, loadProducts} from '../../../../core/store/actions';
 import {ProductCardComponent} from '../product-card/product-card.component';
+import {Product} from "../../../../core/domain/entities";
 
 @Component({
   selector: 'product-list',
@@ -38,12 +39,12 @@ export class ProductListComponent implements OnInit, OnDestroy {
     this.store.dispatch(loadNextPageProducts());
   }
 
-  navigateTo(id: number | undefined) {
+  navigateTo(id: number) {
     this.router.navigate(['products', id]);
   }
 
-  purchaseProduct(id: number | undefined) {
-    this.router.navigate(['cart']);
+  addToCart(product: Product) {
+    this.store.dispatch(addToCart({product}));
   }
 
   ngOnDestroy() {

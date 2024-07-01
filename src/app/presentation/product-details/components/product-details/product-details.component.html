@@ -1,54 +1,62 @@
-@if (product$ | async; as product) {
-  <div class="product-details-container">
-    <div class="images">
-      @for (image of product.images; track image) {
-        <image class="image" [class.selected]="mainImage === image" [url]="image"
-               (mouseover)="mainImage = image"></image>
+@defer(on timer(300)) {
+  @if (product$ | async; as product) {
+    <div class="product-details-container">
+      <div class="images">
+        @for (image of product.images; track image) {
+          <image class="image" [class.selected]="mainImage === image" [url]="image"
+                 (mouseover)="mainImage = image"></image>
+        }
+      </div>
+      @if (product.images) {
+        <image class="main-image" [url]="mainImage || product.images[0]"></image>
       }
-    </div>
-    <image class="main-image" [url]="mainImage || product.images[0]"></image>
-    <div class="product-details">
-      <div class="title">{{ product.title }}</div>
-      <div class="rating">
-        <star-rating class="stars" [rating]="product.rating || 0"></star-rating>
-        <div>({{ product.reviews.length }} Reviews)</div>
-        <div>|</div>
-        <div [style.color]="product.stock > 0 ? '#00ff66' : 'db4444'">
-          {{ product.stock > 0 ? 'In Stock' : 'Hors Stock' }}
-        </div>
-      </div>
-      <div class="price">${{ product.price }}</div>
-      <div class="description">{{ product.description }}</div>
-      <div class="separator"></div>
-      <div class="purchase-container">
-        <button mat-stroked-button class="minus" (click)="quantityChange(-1)">
-          <mat-icon>remove</mat-icon>
-        </button>
-        <div class="quantity">{{ quantity }}</div>
-        <button mat-stroked-button class="plus" (click)="quantityChange(+1)">
-          <mat-icon>add</mat-icon>
-        </button>
-
-        <button mat-button class="purchase"> Buy now </button>
-      </div>
-      <div class="delivery-container">
-        <div class="delivery">
-          <mat-icon class="mat-icon">local_shipping</mat-icon>
-          <div class="delivery-info">
-            <div class="title">Free Delivery</div>
-            <div>Enter your postal code for Delivery Avaibility</div>
+      <div class="product-details">
+        <div class="title">{{ product.title }}</div>
+        <div class="rating">
+          <star-rating class="stars" [rating]="product.rating || 0"></star-rating>
+          <div>({{ product.reviews.length }} Reviews)</div>
+          <div>|</div>
+          <div [style.color]="product.stock > 0 ? '#00ff66' : 'db4444'">
+            {{ product.stock > 0 ? 'In Stock' : 'Hors Stock' }}
           </div>
         </div>
+        <div class="price">${{ product.price }}</div>
+        <div class="description">{{ product.description }}</div>
         <div class="separator"></div>
-        <div class="delivery">
-          <mat-icon class="mat-icon">assignment_return</mat-icon>
-          <div class="delivery-info">
-            <div class="title">Return Delivery</div>
-            <div>Free 30 Days Delivery Returns. Details</div>
+        <div class="purchase-container">
+          <button mat-stroked-button class="minus" (click)="quantityChange(-1)">
+            <mat-icon>remove</mat-icon>
+          </button>
+          <div class="quantity">{{ quantity }}</div>
+          <button mat-stroked-button class="plus" (click)="quantityChange(+1)">
+            <mat-icon>add</mat-icon>
+          </button>
+
+          <button mat-button class="purchase"> Buy now</button>
+        </div>
+        <div class="delivery-container">
+          <div class="delivery">
+            <mat-icon class="mat-icon">local_shipping</mat-icon>
+            <div class="delivery-info">
+              <div class="title">Free Delivery</div>
+              <div>Enter your postal code for Delivery Avaibility</div>
+            </div>
+          </div>
+          <div class="separator"></div>
+          <div class="delivery">
+            <mat-icon class="mat-icon">assignment_return</mat-icon>
+            <div class="delivery-info">
+              <div class="title">Return Delivery</div>
+              <div>Free 30 Days Delivery Returns. Details</div>
+            </div>
           </div>
         </div>
-      </div>
 
+      </div>
     </div>
+  }
+} @loading {
+  <div class="loading-container">
+    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
   </div>
 }

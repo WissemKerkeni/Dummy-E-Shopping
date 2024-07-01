@@ -14,7 +14,7 @@
     <div class="name" routerLink="/products">E-Shopping</div>
     <div class="search">
       <mat-icon class="mat-icon">search</mat-icon>
-      <input [formControl]="searchControl" />
+      <input [formControl]="searchControl"/>
     </div>
     <div class="profile">
       <mat-icon class="mat-icon" prefix="far">notifications</mat-icon>
@@ -28,4 +28,7 @@
   </div>
   <div class="separator"></div>
 </div>
-<router-outlet/>
+
+<div class="content">
+  <router-outlet/>
+</div>

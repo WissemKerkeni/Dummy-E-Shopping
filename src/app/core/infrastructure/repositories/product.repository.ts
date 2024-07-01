@@ -21,6 +21,12 @@ export class ProductRepository {
     );
   }
 
+  getProductDetails(id: number): Observable<Product> {
+    return this.httpClient.get<ProductDTO>(`${environment.apiUrl}/products/${id}`).pipe(
+      map((product) => this.mapProductDTOToProduct(product))
+    );
+  }
+
   private mapProductDTOToProduct(productDTO: ProductDTO): Product {
     const createdAt = new Date(productDTO.createdAt);
     const isNewProduct = (new Date().getTime() - createdAt.getTime()) / (1000 * 3600 * 24) <= 3;

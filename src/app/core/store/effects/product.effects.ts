@@ -3,7 +3,13 @@ import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {of} from 'rxjs';
 import {catchError, map, switchMap, concatMap, tap} from 'rxjs/operators';
 import {ProductService} from '../../application/services/product.service';
-import {loadProducts, loadProductsSuccess, loadProductsFailure, loadNextPageProducts} from '../actions';
+import {
+  loadProducts,
+  loadProductsSuccess,
+  loadProductsFailure,
+  loadNextPageProducts,
+  loadProductDetails, loadProductDetailsSuccess, loadProductDetailsFailure
+} from '../actions';
 
 interface ProductQuery {
   searchText: string;
@@ -37,6 +43,18 @@ export class ProductEffects {
         this.productService.getProducts(this.query.searchText, this.query.page).pipe(
           map(products => loadProductsSuccess({products})),
           catchError(error => of(loadProductsFailure({error})))
+        )
+      )
+    )
+  );
+
+  loadProductDetails$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(loadProductDetails),
+      switchMap(({id}) =>
+        this.productService.getProductDetails(id).pipe(
+          map(productDetails => loadProductDetailsSuccess({productDetails})),
+          catchError(() => of(loadProductDetailsFailure()))
         )
       )
     )
