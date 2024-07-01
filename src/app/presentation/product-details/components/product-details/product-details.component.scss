@@ -1,0 +1,43 @@
+:host {
+  display: block;
+  padding: 2.5rem;
+
+  .product-details-container {
+    display: flex;
+    height: 37.5rem;
+
+    .images {
+      height: 100%;
+      flex: 0 1 10.625rem;
+      display: flex;
+      flex-direction: column;
+      margin-right: 1.875rem;
+
+      .image {
+        height: 8.625rem;
+        //width: 10.625rem;
+        width: 100%;
+
+        &:not(:last-child) {
+          margin-bottom: 1rem;
+        }
+
+        &.selected {
+          border: 2px solid grey;
+        }
+      }
+    }
+
+    .main-image {
+      height: 100%;
+      flex: 0 4 31.25rem;
+      //width: 31.25rem;
+      margin-right: 4.375rem;
+    }
+
+    .product-details {
+      flex: 0 4 31.25rem;
+    }
+  }
+
+}

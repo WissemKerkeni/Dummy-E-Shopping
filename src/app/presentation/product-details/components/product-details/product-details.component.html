@@ -1,1 +1,11 @@
-<p>product-details works!</p>
+@if (product$ | async; as product) {
+  <div class="product-details-container">
+    <div class="images">
+      @for (image of product.images; track image) {
+        <image class="image" [class.selected]="mainImage === image" [url]="image" (mouseover)="mainImage = image"></image>
+      }
+    </div>
+    <image class="main-image" [url]="mainImage || product.images[0]"></image>
+    <div class="product-details"></div>
+  </div>
+}

@@ -1,6 +1,6 @@
 <mat-card class="example-card" appearance="outlined">
-  <div class="mat-card-image" (click)="navigateTo.emit(product()?.id)">
-    <img mat-card-image [src]="product()?.thumbnail" alt="Photo of a product">
+  <image [url]="product()?.thumbnail || ''" mat-card-image class="image" [padding]="'1rem'"
+         (click)="navigateTo.emit(product()?.id)">
     <mat-chip-set class="mat-chip-set" aria-label="Tags">
       @if (product()?.isNew) {
         <custom-chip backgroundColor="#ebeb00" color="#FFFFFF">New</custom-chip>
@@ -16,7 +16,7 @@
       <mat-icon class="mat-icon">shopping_cart</mat-icon>
       <div>Add To Cart</div>
     </div>
-  </div>
+  </image>
   <mat-card-header>
     <mat-card-subtitle class="mat-card-subtitle">
       <custom-chip color="#52057B">{{ product()?.category }}</custom-chip>
@@ -28,7 +28,7 @@
       <div class="price">
         ${{ product()?.price?.toFixed(2) }}
       </div>
-      @if(product()?.discountPercentage) {
+      @if (product()?.discountPercentage) {
         <div class="old-price">
           ${{ product()?.oldPrice?.toFixed(2) }}
         </div>
@@ -36,7 +36,7 @@
     </div>
     <div class="rating">
       <star-rating class="stars" [rating]="product()?.rating || 0"></star-rating>
-      <div class="reviews">({{product()?.reviews?.length}})</div>
+      <div class="reviews">({{ product()?.reviews?.length }})</div>
     </div>
   </mat-card-content>
 </mat-card>

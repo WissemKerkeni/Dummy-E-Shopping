@@ -1,0 +1,7 @@
+<div class="image-container" [style.padding]="padding()">
+  @if (loading) {
+    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+  }
+  <img [src]="url()" alt="image" (load)="loading = false" [style.display]="loading ? 'none' : 'block'"/>
+</div>
+<ng-content></ng-content>
