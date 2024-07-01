@@ -164,3 +164,4 @@ The project follows a typical Angular folder structure:
 ├── main.ts
 └── styles.scss
 ```
+
