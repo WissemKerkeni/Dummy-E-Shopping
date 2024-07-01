@@ -1,27 +1,164 @@
 # Dummy-E-Shopping
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.2.0.
+This project is a frontend application developed using Angular 17. It provides a user interface for interacting with the backend API.
 
-## Development server
+## Features
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- **Cart Handling:** Offers functionalities to add, update, delete, and view products in the cart.
+- **Product Consultation:** Allows users to view detailed information about each product.
+- **Product Reviews:** Enables users to rate and review products.
 
-## Code scaffolding
+## Technologies Used
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Angular 17
+- Material Design
+- TypeScript
+- HTML
+- CSS (SASS/SCSS)
 
-## Build
+## Setup Instructions
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+1. Clone the repository:
 
-## Running unit tests
+   ```bash
+   git clone <repository-url>
+   ```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+2. Navigate to the project directory:
 
-## Running end-to-end tests
+   ```bash
+   cd frontend
+   ```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+3. Install dependencies:
 
-## Further help
+   ```bash
+   npm install
+   ```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+4. Start the development server:
+
+   ```bash
+   npm start
+   ```
+
+5. Open your browser and visit `http://localhost:4200` to view the application.
+
+## Folder Structure
+
+The project follows a typical Angular folder structure:
+
+
+├── app
+│   ├── app.component.html
+│   ├── app.component.scss
+│   ├── app.component.spec.ts
+│   ├── app.component.ts
+│   ├── app.config.ts
+│   ├── app.routes.ts
+│   ├── core
+│   │   ├── application
+│   │   │   ├── dtos
+│   │   │   │   ├── cart.dto.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── product.dto.ts
+│   │   │   │   └── review.dto.ts
+│   │   │   └── services
+│   │   │       ├── cart.service.ts
+│   │   │       ├── index.ts
+│   │   │       └── product.service.ts
+│   │   ├── domain
+│   │   │   ├── entities
+│   │   │   │   ├── cart.entity.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── product.entity.ts
+│   │   │   │   └── review.entity.ts
+│   │   │   └── use-cases
+│   │   │       ├── add-to-cart-usecase.service.ts
+│   │   │       ├── get-cart-use-case.service.ts
+│   │   │       ├── get-product-details-usecase.service.ts
+│   │   │       ├── get-products-use-case.service.ts
+│   │   │       ├── index.ts
+│   │   │       └── remove-from-cart-usecase.service.ts
+│   │   ├── infrastructure
+│   │   │   └── repositories
+│   │   │       ├── cart.repository.ts
+│   │   │       ├── index.ts
+│   │   │       └── product.repository.ts
+│   │   └── store
+│   │       ├── actions
+│   │       │   ├── cart.actions.ts
+│   │       │   ├── index.ts
+│   │       │   └── product.actions.ts
+│   │       ├── effects
+│   │       │   ├── cart.effects.ts
+│   │       │   ├── index.ts
+│   │       │   └── product.effects.ts
+│   │       ├── reducers
+│   │       │   ├── cart.reducer.ts
+│   │       │   ├── index.ts
+│   │       │   └── product.reducer.ts
+│   │       └── selectors
+│   │           ├── cart.selectors.ts
+│   │           ├── index.ts
+│   │           └── product.selectors.ts
+│   ├── presentation
+│   │   ├── cart
+│   │   │   └── components
+│   │   │       └── cart
+│   │   │           ├── cart.component.html
+│   │   │           ├── cart.component.scss
+│   │   │           ├── cart.component.spec.ts
+│   │   │           └── cart.component.ts
+│   │   ├── product-details
+│   │   │   └── components
+│   │   │       └── product-details
+│   │   │           ├── product-details.component.html
+│   │   │           ├── product-details.component.scss
+│   │   │           ├── product-details.component.spec.ts
+│   │   │           └── product-details.component.ts
+│   │   └── product-list
+│   │       └── components
+│   │           ├── product-card
+│   │           │   ├── product-card.component.html
+│   │           │   ├── product-card.component.scss
+│   │           │   ├── product-card.component.spec.ts
+│   │           │   └── product-card.component.ts
+│   │           └── product-list
+│   │               ├── product-list.component.html
+│   │               ├── product-list.component.scss
+│   │               ├── product-list.component.spec.ts
+│   │               └── product-list.component.ts
+│   └── shared
+│       └── components
+│           ├── custom-chip
+│           │   ├── custom-chip.component.html
+│           │   ├── custom-chip.component.scss
+│           │   ├── custom-chip.component.spec.ts
+│           │   └── custom-chip.component.ts
+│           ├── image
+│           │   ├── image.component.html
+│           │   ├── image.component.scss
+│           │   ├── image.component.spec.ts
+│           │   └── image.component.ts
+│           ├── index.ts
+│           └── star-rating
+│               ├── star-rating.component.html
+│               ├── star-rating.component.scss
+│               ├── star-rating.component.spec.ts
+│               └── star-rating.component.ts
+├── assets
+│   ├── .gitkeep
+│   ├── icons
+│   │   └── rate-icon.svg
+│   └── images
+│       ├── logo.png
+│       └── user.png
+├── environments
+│   ├── environment.prod.ts
+│   └── environment.ts
+├── index.html
+├── logo.ico
+├── logo.png
+├── main.ts
+└── styles.scss

@@ -4,6 +4,7 @@
 
   .cart-table {
     max-height: 30rem;
+    overflow-y: auto;
     padding: 0 1rem;
 
     table {

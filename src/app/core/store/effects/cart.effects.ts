@@ -44,9 +44,9 @@ export class CartEffects {
   removeFromCart$ = createEffect(() =>
     this.actions$.pipe(
       ofType(removeFromCart),
-      switchMap(({productId, quantity}) =>
-        this.cartService.removeFromCart(productId, quantity).pipe(
-          map(() => removeFromCartSuccess({productId, quantity})))
+      switchMap(({productId}) =>
+        this.cartService.removeFromCart(productId, 0).pipe(
+          map(() => removeFromCartSuccess({productId})))
       )
     )
   );

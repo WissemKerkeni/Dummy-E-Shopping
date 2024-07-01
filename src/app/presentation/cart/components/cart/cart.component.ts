@@ -11,6 +11,7 @@ import {FormsModule} from "@angular/forms";
 import {ImageComponent} from "../../../../shared/components";
 import {MatButtonModule} from "@angular/material/button";
 import {RouterModule} from "@angular/router";
+import {removeFromCart, updateCartProductSuccess} from "../../../../core/store/actions";
 
 @Component({
   selector: 'app-cart',
@@ -44,6 +45,14 @@ export class CartComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscription?.unsubscribe();
+  }
+
+  updateProduct(productId: number, quantity: number) {
+    this.store.dispatch(updateCartProductSuccess({productId, quantity}));
+  }
+
+  deleteProduct(product: CartProduct) {
+    this.store.dispatch(removeFromCart({productId: product.id}));
   }
 
 }
