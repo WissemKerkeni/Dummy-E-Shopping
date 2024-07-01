@@ -1,5 +1,5 @@
 import {Component, inject} from '@angular/core';
-import {Router, RouterOutlet} from '@angular/router';
+import {Router, RouterLink, RouterOutlet} from '@angular/router';
 import {FormControl, ReactiveFormsModule} from "@angular/forms";
 import {debounceTime, distinctUntilChanged} from "rxjs";
 import {MatIconModule} from "@angular/material/icon";
@@ -7,7 +7,7 @@ import {MatIconModule} from "@angular/material/icon";
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, ReactiveFormsModule, MatIconModule],
+  imports: [RouterOutlet, RouterLink, ReactiveFormsModule, MatIconModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
