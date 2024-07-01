@@ -1,5 +1,11 @@
 import {createFeature, createReducer, on} from '@ngrx/store';
-import {clearCart, addToCartSuccess, loadCartSuccess, removeFromCartSuccess} from '../actions';
+import {
+  clearCart,
+  addToCartSuccess,
+  loadCartSuccess,
+  removeFromCartSuccess,
+  updateCartProductSuccess
+} from '../actions';
 import {Cart, CartProduct, Product} from '../../domain/entities';
 
 export interface CartState {
@@ -30,11 +36,19 @@ export const ngrxCartFeature = createFeature({
         }
       }
     }),
-    on(removeFromCartSuccess, (state, {productId, quantity}) => {
-      let product = state.cart.products.find(p => p.id === productId) || {} as CartProduct;
-      product.quantity -= quantity;
-      const restOfProducts = state.cart.products.filter(p => p.id !== product.id);
-      const products = product.quantity === 0 ? [...restOfProducts] : updateProduct(state.cart.products, product);
+    on(updateCartProductSuccess, (state, {productId, quantity}) => {
+      const products = updateProduct(state.cart.products, productId, quantity);
+      return {
+        ...state,
+        cart: {
+          ...state.cart,
+          products,
+          total: products.reduce((acc, u) => acc + u.total, 0)
+        }
+      }
+    }),
+    on(removeFromCartSuccess, (state, {productId}) => {
+      const products = state.cart.products.filter(p => p.id !== productId);
 
       return {
         ...state,
@@ -51,11 +65,12 @@ export const ngrxCartFeature = createFeature({
   )
 });
 
-const updateProduct = (products: CartProduct[], payload: CartProduct): CartProduct[] => {
-  const index = products.findIndex((p) => p.id === payload.id);
+const updateProduct = (products: CartProduct[], productId: number, quantity: number): CartProduct[] => {
+  const index = products.findIndex((p) => p.id === productId);
+  const updated = {...products[index], quantity };
   return [
     ...products.slice(0, index),
-    Object.assign({}, products[index], payload),
+    Object.assign({}, products[index], updated),
     ...products.slice(index + 1),
   ];
 }
